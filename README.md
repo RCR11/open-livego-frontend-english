@@ -8,7 +8,7 @@
 
 ### Backend:
 
-`git clone https://github.com/BANKA2017/livego`<br>
+`git clone https://github.com/BANKA2017/livego` (this one has edits that make it compatible with the front end)<br>
 `cd livego`<br>
 `go build && make build`<br>
 `make run`
