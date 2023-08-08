@@ -1,19 +1,19 @@
 # livego-frontend
 
-适用于 [gwuhaolin/livego](https://github.com/gwuhaolin/livego) 的前端部分
+Front-end part for [gwuhaolin/livego](https://github.com/gwuhaolin/livego)
 
-## 设置环境
+## set enviroment
 
 ```dotenv
 VUE_APP_FLV_PATH="http://192.168.123.101:7001"
 VUE_APP_HLS_PATH="http://192.168.123.101:7002"
 ```
 
-需要始终启用 `flv`，因为需要用到flv的数据（`/streams` 接口）
+It needs to be enabled all the time `flv`, because the data ( /streams) of flv needs to be used
 
-## 配置参考
+## configuration reference
 
-- iptables 处理端口
+- iptables handle ports
 
     ```shell
     iptables -A INPUT -s 127.0.0.1 -p tcp --dport 6379 -j ACCEPT
@@ -26,11 +26,11 @@ VUE_APP_HLS_PATH="http://192.168.123.101:7002"
     iptables -A INPUT -p TCP --dport 8090 -j REJECT
     ```
   
-- nginx 配置（代理接口及视频），需要注意的是 `8090` 端口会暴露敏感信息，需要自行决定是否代理
+- nginx configuration (proxy interface and video), it should be noted that `8090`the port will expose sensitive information, you need to decide whether to proxy
 
     ```editorconfig
     location ~ (.*\.(flv)$|/streams) {
-      # 此处可能需要添加http auth防止破坏
+      # Here you may need to add http auth to prevent issues
       proxy_pass  http://127.0.0.1:7001;
       proxy_set_header Host $proxy_host;
       proxy_set_header X-Real-IP $remote_addr;
@@ -44,7 +44,7 @@ VUE_APP_HLS_PATH="http://192.168.123.101:7002"
     }
     
     #location ~ /(control|stat) {
-    #  # 此处可能需要添加http auth防止破坏
+    #  # Here you may need to add http auth to prevent issues
     #  proxy_pass  http://127.0.0.1:8090;
     #  proxy_set_header Host $proxy_host;
     #  proxy_set_header X-Real-IP $remote_addr;
@@ -52,14 +52,14 @@ VUE_APP_HLS_PATH="http://192.168.123.101:7002"
     #}
     
     location / {
-      # 播放页
+      # play page
     }
     ``` 
 
-- nginx（代理推流），需要安装 `ngx_stream_proxy_module` 模块，仅供参考
+- nginx (proxy streaming), needs to install `ngx_stream_proxy_module`the module, for reference only
 
     ```editorconfig
-    # 这层放到根nginx.conf, 跟上面那堆不一定在同一个文件
+    # Put this layer in the root nginx.conf, not necessarily in the same file as the pile above
     stream {
         map $server_addr $internalport {
             example.com 1936;
@@ -72,7 +72,7 @@ VUE_APP_HLS_PATH="http://192.168.123.101:7002"
     }
     ```
 
-## 后端修改参考
+## Backend modification reference
 
-由于原版处理redis内容不会删除旧token，所以建议参考 [此处](https://github.com/BANKA2017/livego/commit/3aedd0e6a6a3a04dfd6d6e930d558afb8c7549de) 修改
+Since the original version will not delete the old token when processing redis content, it is recommended to refer to [here](https://github.com/BANKA2017/livego/commit/3aedd0e6a6a3a04dfd6d6e930d558afb8c7549de) for modification
 
