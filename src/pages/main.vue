@@ -12,7 +12,7 @@
                 <div class="card-body">
                   <div class="text-end mt-0"><i :class="{'bi': true, 'bi-circle-fill':true, 'text-danger': true}"></i></div>
                   <span class="display-6">
-                    无直播间
+                    Nobody Is Live
                   </span>
                 </div>
               </div>
@@ -25,7 +25,7 @@
                     {{ liveInfo.uid }}
                   </span>
                   <br>
-                  <span >观众数量: {{ liveInfo.audience_count }}</span>
+                  <span >Viewers: {{ liveInfo.audience_count }}</span>
                 </div>
               </router-link>
             </div>
@@ -34,7 +34,7 @@
             <div class="col-md-8">
               <div :class="{'card': true, 'shadow-lg': true, 'border-0': true, 'mb-3': true, 'bg-dark': darkMode, 'text-white': darkMode}" v-if="!liveList[activeLive]">
                 <div class="card-body">
-                  主播摸鱼中~
+                  Channel Is Offline
                 </div>
               </div>
               <player class="mb-3" :uid="liveList[activeLive].uid" v-else/>
@@ -47,17 +47,17 @@
                     <i :class="{'bi': true, 'bi-circle-fill':true, 'text-success': liveList[activeLive], 'text-danger': !liveList[activeLive]}"></i>
                   </div>
                   <span class="display-6">
-                    {{ (!liveList[activeLive] ? '未开播' : liveList[activeLive].uid) }}
+                    {{ (!liveList[activeLive] ? 'Not On Air' : liveList[activeLive].uid) }}
                   </span>
                   <br>
-                  <span >观众数量: {{ !liveList[activeLive] ? 0 : liveList[activeLive].audience_count }}</span>
+                  <span >Viewers: {{ !liveList[activeLive] ? 0 : liveList[activeLive].audience_count }}</span>
                 </div>
               </div>
               <div :class="{'card': true, 'border-0': true, 'shadow-lg': true, 'mb-3': true, 'bg-dark': darkMode, 'text-white': darkMode}">
                 <div class="card-body">
                   <ul>
-                    <li>如遇卡顿或无法播放，请点刷新或点击带<span :class="{'badge': true, 'bg-danger': videoType === '0', 'bg-dark': (videoType === '1' && !darkMode), 'bg-light': (videoType === '1' && darkMode), 'text-black': (videoType === '1' && darkMode), 'mx-1': true,}" role="button" style="font-size: 0.55em" @click="swapVideoType()">{{ videoTypeList[videoType] }}</span>字样的标签切换播放模式</li>
-                    <li><code>flv</code> 延迟较低，<code>hls</code> 延迟较高</li>
+                    <li>In case of stuck or unable to play please click refresh<span :class="{'badge': true, 'bg-danger': videoType === '0', 'bg-dark': (videoType === '1' && !darkMode), 'bg-light': (videoType === '1' && darkMode), 'text-black': (videoType === '1' && darkMode), 'mx-1': true,}" role="button" style="font-size: 0.55em" @click="swapVideoType()">{{ videoTypeList[videoType] }}</span>Toggle Playback Mode</li>
+                    <li><code>flv</code> Low Latency，<code>hls</code> High Latency</li>
                   </ul>
                 </div>
               </div>
@@ -67,7 +67,7 @@
               <div :class="{'card': true, 'border-0': true, 'shadow-lg': true, 'mb-3': true, 'bg-dark': darkMode, 'text-white': darkMode}" v-if="Object.values(liveList).length">
                 <div class="card-body">
                   <div class="lead mb-2">
-                    直播间
+                    Studio
                   </div>
                   <div style="background-color: white" class="rounded mb-1" v-for="(liveInfo, order) in Object.values(liveList)" :key="order">
                     <router-link :to="{path: '/'+liveInfo.uid+'/'}" style="width: 100%" :class="{'btn': true, 'btn-outline-primary': true, 'rounded': true, 'active': (activeLive === liveInfo.uid+''), 'bg-dark': (darkMode && (activeLive !== liveInfo.uid+''))}">
@@ -77,7 +77,7 @@
                 </div>
               </div>
               <div :class="{'text-center': true, 'my-2': true}">
-                <a href="https://github.com/BANKA2017/open-livego-frontend" target="_blank" :class="{'text-decoration-none': true, 'text-white': darkMode, 'text-black': !darkMode}"><i class="bi bi-github"></i> BANKA2017/open-livego-frontend </a>
+                <a href="https://github.com/RCR11/open-livego-frontend" target="_blank" :class="{'text-decoration-none': true, 'text-white': darkMode, 'text-black': !darkMode}"><i class="bi bi-github"></i> BANKA2017/open-livego-frontend </a>
               </div>
             </div>
           </template>
