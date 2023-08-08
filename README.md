@@ -76,3 +76,4 @@ It needs to be enabled all the time `flv`, because the data ( /streams) of flv n
 
 Since the original version will not delete the old token when processing redis content, it is recommended to refer to [here](https://github.com/BANKA2017/livego/commit/3aedd0e6a6a3a04dfd6d6e930d558afb8c7549de) for modification
 
+(translators note, you may find it easier to just clone `https://github.com/BANKA2017/livego` unless you have special requirements)
