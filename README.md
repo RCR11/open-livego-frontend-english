@@ -1,3 +1,20 @@
+# Quick deployment for proof of concept:<br>
+`git clone https://github.com/RCR11/open-livego-frontend-english`<br>
+`cd open-livego-frontend`
+### Rename ./open-livego-frontend/.env.example to .env and edit to reflect the location of your livego backend deployment.
+`npm ci` To install dependencies<br>
+`npm run serve` To live edit<br>
+`npm run build` To build for production<br>
+
+### Backend:
+
+`git clone https://github.com/BANKA2017/livego`<br>
+`cd livego`<br>
+`go build && make build`<br>
+`make run`
+
+
+____________
 # livego-frontend-english
 
 Front-end part for [gwuhaolin/livego](https://github.com/gwuhaolin/livego)
