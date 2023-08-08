@@ -1,4 +1,4 @@
-# livego-frontend
+# livego-frontend-english
 
 Front-end part for [gwuhaolin/livego](https://github.com/gwuhaolin/livego)
 
