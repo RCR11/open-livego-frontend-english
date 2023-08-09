@@ -40,29 +40,56 @@
               <player class="mb-3" :uid="liveList[activeLive].uid" v-else/>
             </div>
             <div class="col-md-4">
+
+<!-- chat goes here -->
+              <div :class="{'card': true, 'border-0': true, 'shadow-lg': true, 'mb-3': true, 'bg-dark': darkMode, 'text-white': darkMode}" v-if="Object.values(liveList).length">
+                <div class="card-body">
+                  <div class="lead mb-2">
+                    CHAT SHOULD GO HERE
+                  </div>
+                </div>
+              </div>
+<!-- end of chat code -->
+
+            </div>
+
+<!-- stream page description (footer) -->
+
               <div :class="{'card': true, 'shadow-lg': true, 'border-0': true, 'mb-3': true, 'bg-dark': darkMode, 'text-white': darkMode}">
                 <div class="card-body">
                   <div class="text-end">
-                    <span :class="{'badge': true, 'bg-danger': videoType === '0', 'bg-dark': (videoType === '1' && !darkMode), 'bg-light': (videoType === '1' && darkMode), 'text-black': (videoType === '1' && darkMode), 'me-2': true,}" role="button" style="font-size: 0.8em" @click="swapVideoType()">{{ videoTypeList[videoType] }}</span>
-                    <i :class="{'bi': true, 'bi-circle-fill':true, 'text-success': liveList[activeLive], 'text-danger': !liveList[activeLive]}"></i>
+
                   </div>
+<!-- we could put the live button here but it looks shitty -->
+
                   <span class="display-6">
                     {{ (!liveList[activeLive] ? 'Not On Air' : liveList[activeLive].uid) }}
                   </span>
                   <br>
+
+<!-- live dot -->                    
+                    <i :class="{'bi': true, 'bi-circle-fill':true, 'text-success': liveList[activeLive], 'text-danger': !liveList[activeLive]}"></i>
+<!-- end live dot -->
+
+<!-- video source toggle -->
+
+<span :class="{'badge': true, 'bg-danger': videoType === '0', 'bg-dark': (videoType === '1' && !darkMode), 'bg-light': (videoType === '1' && darkMode), 'text-black': (videoType === '1' && darkMode), 'me-2': true,}" role="button" style="font-size: 0.8em" @click="swapVideoType()">{{ videoTypeList[videoType] }}</span>
+
+<!-- end video source toggle -->
                   <span >Viewers: {{ !liveList[activeLive] ? 0 : liveList[activeLive].audience_count }}</span>
                 </div>
               </div>
               <div :class="{'card': true, 'border-0': true, 'shadow-lg': true, 'mb-3': true, 'bg-dark': darkMode, 'text-white': darkMode}">
                 <div class="card-body">
                   <ul>
-                    <li>In case of stuck or unable to play please click refresh<span :class="{'badge': true, 'bg-danger': videoType === '0', 'bg-dark': (videoType === '1' && !darkMode), 'bg-light': (videoType === '1' && darkMode), 'text-black': (videoType === '1' && darkMode), 'mx-1': true,}" role="button" style="font-size: 0.55em" @click="swapVideoType()">{{ videoTypeList[videoType] }}</span>Toggle Playback Mode</li>
+                    <li>In case of stuck or unable to play please click refresh</li>
+                    <li><span :class="{'badge': true, 'bg-danger': videoType === '0', 'bg-dark': (videoType === '1' && !darkMode), 'bg-light': (videoType === '1' && darkMode), 'text-black': (videoType === '1' && darkMode), 'mx-1': true,}" role="button" style="font-size: 0.55em" @click="swapVideoType()">{{ videoTypeList[videoType] }}</span>Toggle Playback Mode</li>
                     <li><code>flv</code> Low Latency，<code>hls</code> High Latency</li>
                   </ul>
                 </div>
               </div>
               <a class="btn btn-primary shadow-lg mb-3 text-decoration-none d-flex" :href="$route.params.room ? '/' + $route.params.room + '/' : '/'">
-                <i class="bi bi-arrow-repeat"></i> 刷新
+                <i class="bi bi-arrow-repeat"></i>  Refresh
               </a>
               <div :class="{'card': true, 'border-0': true, 'shadow-lg': true, 'mb-3': true, 'bg-dark': darkMode, 'text-white': darkMode}" v-if="Object.values(liveList).length">
                 <div class="card-body">
@@ -71,15 +98,16 @@
                   </div>
                   <div style="background-color: white" class="rounded mb-1" v-for="(liveInfo, order) in Object.values(liveList)" :key="order">
                     <router-link :to="{path: '/'+liveInfo.uid+'/'}" style="width: 100%" :class="{'btn': true, 'btn-outline-primary': true, 'rounded': true, 'active': (activeLive === liveInfo.uid+''), 'bg-dark': (darkMode && (activeLive !== liveInfo.uid+''))}">
-                      房间 {{ liveInfo.uid }} <span class="badge bg-secondary text-end">{{ liveInfo.audience_count }}</span>
+                      Channel {{ liveInfo.uid }} <span class="badge bg-secondary text-end">{{ liveInfo.audience_count }}</span>
                     </router-link>
                   </div>
                 </div>
               </div>
               <div :class="{'text-center': true, 'my-2': true}">
-                <a href="https://github.com/RCR11/open-livego-frontend" target="_blank" :class="{'text-decoration-none': true, 'text-white': darkMode, 'text-black': !darkMode}"><i class="bi bi-github"></i> BANKA2017/open-livego-frontend </a>
+                <a href="https://github.com/RCR11/open-livego-frontend-english" target="_blank" :class="{'text-decoration-none': true, 'text-white': darkMode, 'text-black': !darkMode}"><i class="bi bi-github"></i> BANKA2017/open-livego-frontend </a>
               </div>
-            </div>
+<!-- end stream page description (footer) -->
+
           </template>
         </div>
       </div>
