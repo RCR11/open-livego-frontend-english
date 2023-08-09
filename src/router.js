@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from "vue-router";
 const Frame = () => import('@/pages/frame')
 const Main = () => import('@/pages/main')
 const NoFound = () => import('@/pages/noFound')
+const Stream = () => import('@/pages/stream')
 
 export default createRouter({
     history: createWebHistory(),
@@ -19,6 +20,10 @@ export default createRouter({
                 //redirect to main
                 path: "index.html",
                 redirect: '/'
+            },
+            {
+                path : "/stream",
+                component : Stream
             },
             {
                 path: ':room',
