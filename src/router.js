@@ -22,10 +22,6 @@ export default createRouter({
                 redirect: '/'
             },
             {
-                path : "/stream",
-                component : Stream
-            },
-            {
                 path: ':room',
                 name: 'room',
                 component: Main
